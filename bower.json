@@ -1,0 +1,26 @@
+{
+    "name": "xPonent",
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "app/js",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+		"jquery": "latest",
+		"jquery-validation": "latest",
+        "underscore": "latest",
+        "fastclick": "latest",
+		"gsap": "latest",
+		"blockUI": "latest",
+		"handlebars": "latest",
+		"backbone":	"latest",
+		"videojs": "latest",
+		"chartjs": "latest",
+		"d3": "latest"
+    }
+}
