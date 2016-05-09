@@ -1,4 +1,4 @@
-var margin = {top: 100, right: 100, bottom: 100, left: 100},
+var margin = {top: 100, right: 100, bottom: 200, left: 100},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -19,26 +19,19 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var high = d3.svg.area()
-    .x(function(d) { return x(d.date); })
-    .y0(height)
-    .y1(function(d) { return y(d.high); });
-
-var low = d3.svg.area()
-    .x(function(d) { return x(d.date); })
-    .y0(height)
-    .y1(function(d) { return y(d.low); })
-	.interpolate("basis");
-
-var average = d3.svg.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.average); });
-
 var svg = d3.select("#chart").append("svg")
     .attr("width", "100%")
     .attr("height", height + margin.top + margin.bottom)
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var line = function(field) {
+	return d3.svg.line()
+        .x(function(d) {return x(d.date);})
+        .y(function(d) {
+            return y(d[field] || 0);
+    }).interpolate("basis");
+};
 
 var area = function(field) {
     return d3.svg.area()
@@ -91,7 +84,7 @@ d3.csv("./income.csv", function(error, data) {
 	var averagePath = svg.append("path")
 		.datum(data)
 		.attr("class", "average")
-		.attr("d", area());
+		.attr("d", line());
 
 	var lowPath = svg.append("path")
 		.datum(data)
@@ -137,11 +130,12 @@ d3.csv("./income.csv", function(error, data) {
 
 	svg.append("g")
 		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
+		.attr("transform", "translate(0,210)")
 		.call(xAxis);
 
 	svg.append("g")
 		.attr("class", "y axis")
+		.attr("transform", "translate(-10, 0)")
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
@@ -169,10 +163,10 @@ d3.csv("./income.csv", function(error, data) {
 
 		if ($this.classed("showing")) {
 			$this.classed("showing", false);
-			averagePath.datum(data).transition().duration(500).attr("d", area());      
+			averagePath.datum(data).transition().duration(500).attr("d", line());      
 		} else {
 			$this.classed("showing", true);
-			averagePath.datum(data).transition().duration(500).attr("d", area("average"));      
+			averagePath.datum(data).transition().duration(500).attr("d", line("average"));      
 		}
 	});
 
