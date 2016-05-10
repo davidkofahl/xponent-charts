@@ -21,6 +21,7 @@
 		"backbone":	"latest",
 		"videojs": "latest",
 		"chartjs": "latest",
-		"d3": "latest"
+		"d3": "latest",
+		"rangeslider": "latest"
     }
 }

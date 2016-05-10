@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Enrollment Chart</title>
+	<style>
+		#chart {
+			width: 960px;
+			margin: 0 auto
+		}
+
+		#chart svg.pie {
+			float: left;
+			/* width: 100%; */
+			/* height: 100% */
+			border: solid 1px black;
+		}
+
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+
+		.high {
+			fill: steelblue;
+		}
+
+		.low {
+			fill: red;
+		}
+
+		.average {
+			fill: none;
+			stroke: #000;
+		}
+
+		.high-dot {
+			fill: white;
+			stroke: steelblue;
+		}
+
+		.low-dot {
+			fill: white;
+			stroke: red;
+		}
+		
+		.bar {
+			fill: gray;
+		}
+
+		.hovers {
+			stroke: transparent;
+			fill: transparent;
+		}
+
+		#range-center {
+			width: 500px;
+			margin: 0 auto;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div id="chart"></div>
+	<div id="range-center">
+		<input id="range" type="range" value="0" min="0" max="10" step="1">
+	</div>
+	<script src="bower_components/d3/d3.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/rangeslider/rangeslider.js"></script>
+	<script src="js/enrollment.js"></script>
+</body>
+
+</html>
